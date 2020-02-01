@@ -18,14 +18,15 @@ public class MeteorController : MonoBehaviour
     {
         for (int i = 0; i <= meteorNum; i++)
         {
-            float randomX = Random.Range(-15, 15);
-            float randomZ = Random.Range(-15, 15);
+            float randomTheta = Random.value * Mathf.PI * 2;
+            float randomX = Mathf.Cos(randomTheta)*15;
+            float randomZ = Mathf.Sin(randomTheta)*15;
 
             Vector3 randomPosition = new Vector3(randomX, 0, randomZ);
             spawnedMeteor = Instantiate(meteor, randomPosition, Quaternion.identity, transform);
 
-            Vector3 randomVelocity = new Vector3(randomX / 15, 0, randomZ / 15);
-            spawnedMeteor.GetComponent<Rigidbody>().velocity = randomVelocity * velocityMultiplier;
+            Vector3 velocity = (-randomPosition).normalized;
+            spawnedMeteor.GetComponent<Rigidbody>().velocity = velocity * velocityMultiplier;
         }
 
         m_Rigidbody = GetComponent<Rigidbody>();
@@ -47,7 +48,5 @@ public class MeteorController : MonoBehaviour
         //    Vector3 randomPosition = new Vector3(randomX, 0, randomZ);
         //    Instantiate(meteor, randomPosition, Quaternion.identity, transform);
         //
-        
-        
     }
 }
