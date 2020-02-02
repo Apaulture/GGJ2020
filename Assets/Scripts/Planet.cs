@@ -13,6 +13,7 @@ public class Planet : MonoBehaviour
 	public Color DamageParticleColor;
 	public Color HealParticleColor;
 	public GameObject cam1;
+	public GameObject cam2;
 	public GameObject planet2;
 
 	void Start () {
@@ -60,6 +61,7 @@ public class Planet : MonoBehaviour
 			// Restored, victory
 
 			cam1.SetActive(false);
+			cam2.SetActive(true);
 			transform.parent.SetParent(planet2.transform);
 
 		}
