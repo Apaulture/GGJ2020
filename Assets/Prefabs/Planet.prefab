@@ -132,8 +132,8 @@ MonoBehaviour:
   - {fileID: 100000, guid: b159a707574263d40bc2c7737ac49f70, type: 3}
   - {fileID: 100000, guid: 6fce5c1187dec4f4d80312af4d3b3971, type: 3}
   - {fileID: 100000, guid: 9bdd15ac8da23ad44b631b6932a75283, type: 3}
-  DamageParticleColor: {r: 0.8867924, g: 0.7924852, b: 0.75711995, a: 1}
-  HealParticleColor: {r: 237.9802, g: 454.52072, b: 263.8709, a: 1}
+  DamageParticleColor: {r: 0.5188679, g: 0.42341578, b: 0.42341578, a: 1}
+  HealParticleColor: {r: 0.5518868, g: 1, b: 0.62686807, a: 1}
 --- !u!135 &3975736902460222133
 SphereCollider:
   m_ObjectHideFlags: 0

@@ -10,8 +10,8 @@ public class Planet : MonoBehaviour
 	public float CollideRadiusMin = .8f;
 	public float CollideRadiusMax = 1.25f;
 	public GameObject[] DamageModels;
-	public Color DamageParticleColor = Color.red;
-	public Color HealParticleColor = Color.green;
+	public Color DamageParticleColor;
+	public Color HealParticleColor;
 	public GameObject cam2;
 
 	void Start () {
