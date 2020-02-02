@@ -18,7 +18,9 @@ public class CollisionController : MonoBehaviour
         //Vector3 rotation = new Vector3(15, 30, 40);
         //transform.Rotate(rotation * Time.deltaTime);
 
-        if (transform.parent.CompareTag("Arm") && Input.GetAxis("Fire1") == 1)
+        bool isGrabbed = transform.parent
+                && transform.parent.CompareTag("Arm");
+        if (isGrabbed && Input.GetAxis("Fire1") == 1)
         {
             // The direction of the meteor after you let go of it
             var cannon = transform.parent.GetComponent<CannonMovement>();
