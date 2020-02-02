@@ -121,3 +121,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d8a970a0326f473f892826d9e3a594e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageMeteor:
+    serializedVersion: 2
+    rgba: 4605510
+  healMeteor:
+    serializedVersion: 2
+    rgba: 65283
+  holdThreshold: 1.5

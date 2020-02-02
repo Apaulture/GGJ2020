@@ -9,6 +9,7 @@ public class Planet : MonoBehaviour
 	public int Health = 5;
 	public float ScalePerHealth = .25f;
 	public GameObject[] DamageModels;
+	public GameObject cam;
 
 	void Start () {
 		UpdateHealth();
@@ -33,14 +34,22 @@ public class Planet : MonoBehaviour
 		if (Health >= MaxHealth || Health <= 0)
 			return;
 
-		if (other.gameObject.tag == "Meteor") {
+        // Heal/damage planet based on tag
+		if (other.gameObject.tag == "Meteor")
+        {
 			--Health;
-		} else /*TODO tag for healing object if needed*/ {
+		}
+        else if (other.gameObject.tag == "Heal")
+		{
 			++Health;
 		}
+
+        // Health control
 		if (Health >= MaxHealth) {
 			Health = MaxHealth;
 			// Restored, victory
+
+			cam.SetActive(false);
 		}
 		if (Health <= 0) {
 			Health = 0;
