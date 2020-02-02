@@ -4,16 +4,15 @@ using UnityEngine;
 
 public class MeteorController : MonoBehaviour
 {
+    public GameObject arm;
     public GameObject meteor;
     public int meteorNum;
     public int velocityMultiplier;
 
     float timer;
     int wholeTimer;
-    Rigidbody m_Rigidbody;
     GameObject spawnedMeteor;
 
-    // Start is called before the first frame update
     void Start()
     {
         for (int i = 0; i <= meteorNum; i++)
@@ -28,13 +27,8 @@ public class MeteorController : MonoBehaviour
             Vector3 velocity = (-randomPosition).normalized;
             spawnedMeteor.GetComponent<Rigidbody>().velocity = velocity * velocityMultiplier;
         }
-
-        m_Rigidbody = GetComponent<Rigidbody>();
-
-
     }
 
-    // Update is called once per frame
     void Update()
     {
         timer += Time.deltaTime;
