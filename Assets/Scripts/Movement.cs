@@ -33,6 +33,8 @@ public class Movement : MonoBehaviour
         float z = radius * Mathf.Sin(timer);
 
         Vector3 position = new Vector3(x, 0f, z);
-        transform.position = position + centerTarget.position;
+        if (centerTarget) {
+                transform.position = position + centerTarget.position;
+        }
     }
 }
