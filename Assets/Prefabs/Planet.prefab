@@ -203,8 +203,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af5611276648eea4683c98298541f4be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHealth: 10
-  Health: 5
+  MaxHealth: 5
+  Health: 2
   CollideRadiusMin: 0.8
   CollideRadiusMax: 1.25
   DamageSprites:
