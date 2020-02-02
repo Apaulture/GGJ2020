@@ -16,14 +16,10 @@ public class Movement : MonoBehaviour
 
     private void Update()
     {
+        rotationDirection = Input.GetAxis("Horizontal");
         timer += Time.deltaTime * rotationSpeed * -rotationDirection;
         Rotate();
         transform.LookAt(centerTarget);
-    }
-
-    private void FixedUpdate()
-    {
-        rotationDirection = Input.GetAxis("Horizontal");
     }
 
     void Rotate()
