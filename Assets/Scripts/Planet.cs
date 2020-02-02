@@ -7,9 +7,11 @@ public class Planet : MonoBehaviour
 	const int NUM_SLICES = 8;
 	public int MaxHealth = 10;
 	public int Health = 5;
-	public float ScalePerHealth = .25f;
+	public float CollideRadiusMin = .8f;
+	public float CollideRadiusMax = 1.25f;
 	public GameObject[] DamageModels;
-	public GameObject cam;
+	public Color DamageParticleColor = Color.red;
+	public Color HealParticleColor = Color.green;
 
 	void Start () {
 		UpdateHealth();
@@ -19,9 +21,9 @@ public class Planet : MonoBehaviour
 	}
 
 	void UpdateHealth () {
-		var scale = transform.localScale;
-		scale.x = scale.y = scale.z = ScalePerHealth * Health;
-		//transform.localScale = scale;
+		var collider = GetComponent<SphereCollider>();
+		collider.radius = CollideRadiusMin + (CollideRadiusMax-CollideRadiusMin)*Health/MaxHealth;
+
 		var i = Mathf.FloorToInt((-1.0f + DamageModels.Length) * Health / MaxHealth);
 		GameObject model = DamageModels[i];
 		if (model) {
@@ -30,29 +32,37 @@ public class Planet : MonoBehaviour
 		}
 	}
 
+	void EmitParticles(Color color) {
+		var particles = GetComponentInChildren<ParticleSystem>();
+		if (particles) {
+			var emitParams = new ParticleSystem.EmitParams();
+			emitParams.startColor = color;
+			particles.Emit(emitParams, 100);
+		}
+	}
+
 	void OnCollisionEnter(Collision other) {
 		if (Health >= MaxHealth || Health <= 0)
 			return;
 
-        // Heal/damage planet based on tag
-		if (other.gameObject.tag == "Meteor")
-        {
+		if (other.gameObject.CompareTag("Meteor")) {
 			--Health;
-		}
-        else if (other.gameObject.tag == "Heal")
-		{
+			EmitParticles(DamageParticleColor);
+		} else if (other.gameObject.CompareTag("Heal")) {
 			++Health;
+			EmitParticles(HealParticleColor);
 		}
 
-        // Health control
 		if (Health >= MaxHealth) {
 			Health = MaxHealth;
 			// Restored, victory
-
-			cam.SetActive(false);
 		}
 		if (Health <= 0) {
 			Health = 0;
+			var particles = GetComponentInChildren<ParticleSystem>();
+			if (particles) {
+				particles.transform.parent = null;
+			}
 			Destroy(gameObject);
 			//Explode, game over
 		}
