@@ -5,11 +5,11 @@ using UnityEngine;
 public class Planet : MonoBehaviour
 {
 	const int NUM_SLICES = 8;
-	public int MaxHealth = 10;
-	public int Health = 5;
+	public int MaxHealth = 5;
+	public int Health = 2;
 	public float CollideRadiusMin = .8f;
 	public float CollideRadiusMax = 1.25f;
-	public GameObject[] DamageModels;
+	public Sprite[] DamageSprites;
 	public Color DamageParticleColor;
 	public Color HealParticleColor;
 	public GameObject cam1;
@@ -27,11 +27,12 @@ public class Planet : MonoBehaviour
 		var collider = GetComponent<SphereCollider>();
 		collider.radius = CollideRadiusMin + (CollideRadiusMax-CollideRadiusMin)*Health/MaxHealth;
 
-		var i = Mathf.FloorToInt((-1.0f + DamageModels.Length) * Health / MaxHealth);
-		GameObject model = DamageModels[i];
+		var i = Health - 1;
+		Sprite model = DamageSprites[i];
 		if (model) {
-			var meshFilter = GetComponentInChildren<MeshFilter>();
-			meshFilter.mesh = model.GetComponentInChildren<MeshFilter>().sharedMesh;
+
+			SpriteRenderer sRenderer = GetComponentInChildren<SpriteRenderer>();
+			sRenderer.sprite = DamageSprites[i];
 		}
 	}
 
