@@ -13,6 +13,7 @@ public class Planet : MonoBehaviour
 	public Color DamageParticleColor;
 	public Color HealParticleColor;
 	public GameObject cam2;
+	public GameObject planet2;
 
 	void Start () {
 		UpdateHealth();
@@ -59,6 +60,8 @@ public class Planet : MonoBehaviour
 			// Restored, victory
 
 			cam2.SetActive(true);
+			transform.parent.SetParent(planet2.transform);
+
 		}
 		if (Health <= 0) {
 			Health = 0;
