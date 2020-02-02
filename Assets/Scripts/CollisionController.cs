@@ -23,9 +23,12 @@ public class CollisionController : MonoBehaviour
 
         if (holdingMeteor && Input.GetAxis("Fire1") == 1)
         {
+            // The direction of the meteor after you let go of it
             Vector3 velocity = new Vector3(1, 0, 1);
             m_Rigidbody.velocity = velocity;
-            this.transform.parent.parent = this.transform;
+
+            // Change the parent of the meteor so it doesn't follow the path when you rotate the arm
+            this.transform.parent = this.transform.parent.parent;
         }
     }
 

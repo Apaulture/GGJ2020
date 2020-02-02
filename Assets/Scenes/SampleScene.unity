@@ -323,6 +323,11 @@ PrefabInstance:
       propertyPath: arm
       value: 
       objectReference: {fileID: 3494199132560789851}
+    - target: {fileID: 2779976639460285930, guid: 5d72e7f726e2e4663817e2c08208f3d7,
+        type: 3}
+      propertyPath: velocityMultiplier
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2779976639460285931, guid: 5d72e7f726e2e4663817e2c08208f3d7,
         type: 3}
       propertyPath: m_Name
@@ -669,7 +674,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb50c8517db8b4ba8b26a63c8c146e45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 8
+  radius: 4.3
   rotationSpeed: 1
   centerTarget: {fileID: 1063311444}
 --- !u!33 &3494199133564032548
@@ -689,7 +694,7 @@ Transform:
   m_GameObject: {fileID: 3494199133564032544}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -8}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children:
   - {fileID: 3494199133098671476}
   m_Father: {fileID: 0}
