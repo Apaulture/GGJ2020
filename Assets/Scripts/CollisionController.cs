@@ -6,17 +6,15 @@ public class CollisionController : MonoBehaviour
 {
     Rigidbody m_Rigidbody;
 
-    // Start is called before the first frame update
     void Start()
     {
         m_Rigidbody = GetComponent<Rigidbody>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        //Vector3 rotation = new Vector3(15, 30, 40);
-        //transform.Rotate(rotation * Time.deltaTime);
+        Vector3 rotation = new Vector3(15, 30, 40);
+        transform.Rotate(rotation * Time.deltaTime);
 
         bool isGrabbed = transform.parent
                 && transform.parent.CompareTag("Arm");
@@ -44,8 +42,9 @@ public class CollisionController : MonoBehaviour
         }
         else if (col.gameObject.CompareTag("Player"))
         {
-            // Game over condition
-            Destroy(col.gameObject);
+            // Game over
+
+            // Play satellite destruction animation
         }
     }
 }
