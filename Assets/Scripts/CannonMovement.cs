@@ -7,6 +7,7 @@ public class CannonMovement : MonoBehaviour
     float rotationDirection;
 
     public float rotationRate = 45.0f;
+    public float ThrowMeteorSpeed = 3.0f;
 
     void Update()
     {

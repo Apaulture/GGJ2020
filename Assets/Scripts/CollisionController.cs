@@ -5,9 +5,6 @@ using UnityEngine;
 public class CollisionController : MonoBehaviour
 {
     Rigidbody m_Rigidbody;
-    public GameObject arm;
-
-    public static bool holdingMeteor;
 
     // Start is called before the first frame update
     void Start()
@@ -21,14 +18,14 @@ public class CollisionController : MonoBehaviour
         //Vector3 rotation = new Vector3(15, 30, 40);
         //transform.Rotate(rotation * Time.deltaTime);
 
-        if (holdingMeteor && Input.GetAxis("Fire1") == 1)
+        if (transform.parent.CompareTag("Arm") && Input.GetAxis("Fire1") == 1)
         {
             // The direction of the meteor after you let go of it
-            Vector3 velocity = new Vector3(1, 0, 1);
-            m_Rigidbody.velocity = velocity;
+            var cannon = transform.parent.GetComponent<CannonMovement>();
+            m_Rigidbody.velocity = transform.parent.rotation * Vector3.forward * cannon.ThrowMeteorSpeed;
 
             // Change the parent of the meteor so it doesn't follow the path when you rotate the arm
-            this.transform.parent = this.transform.parent.parent;
+            this.transform.parent = null;
         }
     }
 
@@ -37,14 +34,12 @@ public class CollisionController : MonoBehaviour
         if (col.gameObject.CompareTag("Meteor"))
         {
             // Play effect
-            gameObject.SetActive(false);
-            col.gameObject.SetActive(false);
+            Destroy(gameObject);
         }
         else if (col.gameObject.CompareTag("Arm"))
         {
             m_Rigidbody.velocity = Vector3.zero;
             transform.parent = col.gameObject.transform;
-            holdingMeteor = true;
         }
     }
 }
