@@ -70,6 +70,17 @@ public class CollisionController : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        else if (col.gameObject.CompareTag("Heal"))
+        {
+            /*if (CompareTag("Heal"))
+            {
+                // TODO pass through
+            }
+            else*/
+            {
+                Destroy(gameObject);
+            }
+        }
         else if (col.gameObject.CompareTag("Arm"))
         {
             // On collision with arm
