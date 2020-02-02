@@ -4,43 +4,39 @@ using UnityEngine;
 
 public class MeteorController : MonoBehaviour
 {
-    public GameObject arm;
     public GameObject meteor;
     public int meteorNum;
     public int velocityMultiplier;
+    public float waitTime;
 
-    float timer;
-    int wholeTimer;
     GameObject spawnedMeteor;
 
     void Start()
     {
-        for (int i = 0; i <= meteorNum; i++)
+        StartCoroutine(TimeBetweenMeteors());
+    }
+
+    private void Update()
+    {
+    }
+
+    IEnumerator TimeBetweenMeteors()
+    {
+        while (transform.childCount < meteorNum)
         {
             float randomTheta = Random.value * Mathf.PI * 2;
-            float randomX = Mathf.Cos(randomTheta)*15;
-            float randomZ = Mathf.Sin(randomTheta)*15;
+            float randomX = Mathf.Cos(randomTheta) * 15;
+            float randomZ = Mathf.Sin(randomTheta) * 15;
 
             Vector3 randomPosition = new Vector3(randomX, 0, randomZ);
             spawnedMeteor = Instantiate(meteor, randomPosition, Quaternion.identity, transform);
 
             Vector3 velocity = (-randomPosition).normalized;
             spawnedMeteor.GetComponent<Rigidbody>().velocity = velocity * velocityMultiplier;
+
+            waitTime -= .015f;
+
+            yield return new WaitForSeconds(waitTime);
         }
-    }
-
-    void Update()
-    {
-        timer += Time.deltaTime;
-        wholeTimer = (int)timer;
-
-        //if (wholeTimer % 2 == 0) // on even
-        //{
-        //    float randomX = Random.Range(-15, 15);
-        //    float randomZ = Random.Range(-15, 15);
-
-        //    Vector3 randomPosition = new Vector3(randomX, 0, randomZ);
-        //    Instantiate(meteor, randomPosition, Quaternion.identity, transform);
-        //
     }
 }

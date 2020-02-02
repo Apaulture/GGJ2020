@@ -35,13 +35,17 @@ public class CollisionController : MonoBehaviour
     {
         if (col.gameObject.CompareTag("Meteor"))
         {
-            // Play effect
             Destroy(gameObject);
         }
         else if (col.gameObject.CompareTag("Arm"))
         {
             m_Rigidbody.velocity = Vector3.zero;
             transform.parent = col.gameObject.transform;
+        }
+        else if (col.gameObject.CompareTag("Player"))
+        {
+            // Game over condition
+            Destroy(col.gameObject);
         }
     }
 }
