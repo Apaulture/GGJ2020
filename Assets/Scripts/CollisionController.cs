@@ -20,8 +20,12 @@ public class CollisionController : MonoBehaviour
         m_Rigidbody = GetComponent<Rigidbody>();
         m_Renderer = GetComponent<Renderer>();
 
-        m_Renderer.material.SetColor("_Color", damageMeteor);
-        m_Renderer.material.SetColor("_EmissionColor", Color.black);
+        if (gameObject.CompareTag("Meteor"))
+        {
+            m_Renderer.material.SetColor("_Color", damageMeteor);
+            m_Renderer.material.SetColor("_EmissionColor", Color.black);
+        }
+        
     }
 
     void Update()

@@ -12,6 +12,7 @@ public class Planet : MonoBehaviour
 	public GameObject[] DamageModels;
 	public Color DamageParticleColor = Color.red;
 	public Color HealParticleColor = Color.green;
+	public GameObject cam2;
 
 	void Start () {
 		UpdateHealth();
@@ -56,6 +57,8 @@ public class Planet : MonoBehaviour
 		if (Health >= MaxHealth) {
 			Health = MaxHealth;
 			// Restored, victory
+
+			cam2.SetActive(true);
 		}
 		if (Health <= 0) {
 			Health = 0;
