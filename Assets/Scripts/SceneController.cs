@@ -9,6 +9,8 @@ public class SceneController : MonoBehaviour
     public Button playButton;
     public Button howToButton;
     public Button creditsButton;
+    public Button logoButton;
+    public Button gameButton;
 
     public float logoMenuWait;
     public float briefingGameWait;
@@ -18,10 +20,14 @@ public class SceneController : MonoBehaviour
         Button pButton = playButton.GetComponent<Button>();
         Button hwButton = howToButton.GetComponent<Button>();
         Button cButton = creditsButton.GetComponent<Button>();
+        Button lButton = logoButton.GetComponent<Button>();
+        Button gButton = gameButton.GetComponent<Button>();
 
         pButton.onClick.AddListener(Play);
         hwButton.onClick.AddListener(HowToPlay);
         cButton.onClick.AddListener(Credits);
+        lButton.onClick.AddListener(Logo);
+        gButton.onClick.AddListener(Game);
 
         StartCoroutine(Wait());
     }
@@ -40,6 +46,16 @@ public class SceneController : MonoBehaviour
     void Credits()
     {
         SceneManager.LoadScene(sceneName: "Credits");
+    }
+
+    void Logo()
+    {
+        SceneManager.LoadScene(sceneName: "Main Menu");
+    }
+
+    void Game()
+    {
+        SceneManager.LoadScene(sceneName: "Game");
     }
 
     IEnumerator Wait()
