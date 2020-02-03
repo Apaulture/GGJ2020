@@ -622,7 +622,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 203988189}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 41.6, y: 7.01, z: 8.3}
+  m_LocalPosition: {x: 41.6, y: 0, z: 8.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1583255693}
@@ -1254,7 +1254,7 @@ PrefabInstance:
     - target: {fileID: 2779976639460285929, guid: 5d72e7f726e2e4663817e2c08208f3d7,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 11.410882
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2779976639460285929, guid: 5d72e7f726e2e4663817e2c08208f3d7,
         type: 3}
@@ -1319,7 +1319,7 @@ PrefabInstance:
     - target: {fileID: 2779976639460285930, guid: 5d72e7f726e2e4663817e2c08208f3d7,
         type: 3}
       propertyPath: meteorNum
-      value: 100
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 2779976639460285931, guid: 5d72e7f726e2e4663817e2c08208f3d7,
         type: 3}
@@ -1464,6 +1464,30 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1054782342
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1054782339}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ff408cbcb8144f43957e77d31d3d848, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MaxHealth: 5
+  Health: 4
+  CollideRadiusMin: 0.8
+  CollideRadiusMax: 1.25
+  DamageSprites:
+  - {fileID: 21300000, guid: a584d75ac67b64eccb3e9e2771e27c52, type: 3}
+  - {fileID: 21300000, guid: a7832f57c4e6941279f1ebf4548a0979, type: 3}
+  - {fileID: 21300000, guid: aed9a85760c884db591a44c3787eda00, type: 3}
+  - {fileID: 21300000, guid: 37a94d4e95cda4fcca80b66b47645a3f, type: 3}
+  - {fileID: 21300000, guid: 85d73dea0d6be4172bfca1c1a0ca7ca3, type: 3}
+  DamageParticleColor: {r: 0.5176471, g: 0.42352942, b: 0.42352942, a: 0}
+  HealParticleColor: {r: 0.5529412, g: 1, b: 0.627451, a: 0}
 --- !u!4 &1063311444 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7836862475048194434, guid: ac5288b17f1aa4a5b918fa4bbf8dd7cb,
@@ -1773,6 +1797,30 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1170667910
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1170667908}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ff408cbcb8144f43957e77d31d3d848, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MaxHealth: 5
+  Health: 2
+  CollideRadiusMin: 0.8
+  CollideRadiusMax: 1.25
+  DamageSprites:
+  - {fileID: 21300000, guid: a584d75ac67b64eccb3e9e2771e27c52, type: 3}
+  - {fileID: 21300000, guid: a7832f57c4e6941279f1ebf4548a0979, type: 3}
+  - {fileID: 21300000, guid: aed9a85760c884db591a44c3787eda00, type: 3}
+  - {fileID: 21300000, guid: 37a94d4e95cda4fcca80b66b47645a3f, type: 3}
+  - {fileID: 21300000, guid: 85d73dea0d6be4172bfca1c1a0ca7ca3, type: 3}
+  DamageParticleColor: {r: 0.5176471, g: 0.42352942, b: 0.42352942, a: 0}
+  HealParticleColor: {r: 0.5529412, g: 1, b: 0.627451, a: 0}
 --- !u!1001 &1366003467
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1991,7 +2039,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1451014506}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 19.3, y: 10.32, z: -5.56}
+  m_LocalPosition: {x: 19.3, y: 0, z: -5.56}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1170667907}
@@ -2546,6 +2594,30 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1583255696
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1583255694}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ff408cbcb8144f43957e77d31d3d848, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MaxHealth: 5
+  Health: 1
+  CollideRadiusMin: 0.8
+  CollideRadiusMax: 1.25
+  DamageSprites:
+  - {fileID: 21300000, guid: a584d75ac67b64eccb3e9e2771e27c52, type: 3}
+  - {fileID: 21300000, guid: a7832f57c4e6941279f1ebf4548a0979, type: 3}
+  - {fileID: 21300000, guid: aed9a85760c884db591a44c3787eda00, type: 3}
+  - {fileID: 21300000, guid: 37a94d4e95cda4fcca80b66b47645a3f, type: 3}
+  - {fileID: 21300000, guid: 85d73dea0d6be4172bfca1c1a0ca7ca3, type: 3}
+  DamageParticleColor: {r: 0.5176471, g: 0.42352942, b: 0.42352942, a: 0}
+  HealParticleColor: {r: 0.5529412, g: 1, b: 0.627451, a: 0}
 --- !u!1001 &1625674876
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3532,7 +3604,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2093341472}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 19.36, y: -5.95, z: 13.8}
+  m_LocalPosition: {x: 19.36, y: 0, z: 13.8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1054782340}
