@@ -74,7 +74,7 @@ public class Planet : MonoBehaviour
 			transform.parent.SetParent(planet2.transform);
 
 			victory = true;
-			Instantiate(victoryText, new Vector3(0, 0, -7.4f), Quaternion.Euler(90, 0, 0), null);
+			Instantiate(victoryText, new Vector3(24.73f, 0, -30.25f), Quaternion.Euler(90, 0, 0), null);
 		}
 		if (Health <= 0) {
 			Health = 0;
