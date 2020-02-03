@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Planet : MonoBehaviour
 {
@@ -15,17 +16,19 @@ public class Planet : MonoBehaviour
 	public GameObject cam1;
 	public GameObject cam2;
 	public GameObject planet2;
-    
+	bool victory = false;
+	public GameObject victoryText;
 
 	void Start () {
 		UpdateHealth();
+		
 	}
 
 	void Update() {
-        if (Input.GetAxis("Fire2") == 1)
-        {
-			Debug.Log("yo");
-        }
+		if (Input.GetAxis("Fire2") == 1 && victory)
+		{
+			SceneManager.LoadScene("Credits");
+		}
 	}
 
 	void UpdateHealth () {
@@ -70,6 +73,8 @@ public class Planet : MonoBehaviour
 			cam2.SetActive(true);
 			transform.parent.SetParent(planet2.transform);
 
+			victory = true;
+			Instantiate(victoryText, new Vector3(0, 0, -7.4f), Quaternion.Euler(90, 0, 0), null);
 		}
 		if (Health <= 0) {
 			Health = 0;
