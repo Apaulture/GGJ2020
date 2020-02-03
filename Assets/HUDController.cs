@@ -7,20 +7,18 @@ public class HUDController : MonoBehaviour
     public Sprite[] HUDSprites;
 
     // Start is called before the first frame update
-    void Start()
+    public void UpdateHealth(int health)
     {
-
-        int i = SatelliteHealth.Health - 1;
+        int i = health - 1;
 
         Sprite model = HUDSprites[i];
         if (model)
         {
-
-            SpriteRenderer sRenderer = GetComponentInChildren<SpriteRenderer>();
+            SpriteRenderer sRenderer = GetComponent<SpriteRenderer>();
             sRenderer.sprite = HUDSprites[i];
         }
     }
-
+    
     // Update is called once per frame
     void Update()
     {
