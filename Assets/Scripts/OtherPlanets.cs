@@ -14,7 +14,10 @@ public class OtherPlanets : MonoBehaviour
 	public Color HealParticleColor;
 
 	void Start () {
-		UpdateHealth();
+        if (Health != 5)
+        {
+			UpdateHealth();
+		}
 	}
 
 	void UpdateHealth () {
