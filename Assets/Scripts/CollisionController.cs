@@ -18,6 +18,8 @@ public class CollisionController : MonoBehaviour
     public AudioClip[] HitOtherMeteorSounds;
     public AudioClip[] HitSatelliteSounds;
     public AudioClip[] HitPlanetSounds;
+    public AudioClip LaunchSound;
+    public AudioClip ChangeSound;
 
     void Start()
     {
@@ -47,6 +49,10 @@ public class CollisionController : MonoBehaviour
 
             // Change the parent of the meteor so it doesn't follow the path when you rotate the arm
             this.transform.parent = null;
+
+            var audio = GetComponentInChildren<AudioSource>();
+            audio.clip = LaunchSound;
+            audio.Play();
         }
 
         // Condition to turn meteor into healing object
@@ -56,6 +62,12 @@ public class CollisionController : MonoBehaviour
 
             if (holdTimer > holdThreshold)
             {
+                if (!held)
+                {
+                    var audio = GetComponentInChildren<AudioSource>();
+                    audio.clip = ChangeSound;
+                    audio.Play();
+                }
                 held = true;
 
                 if (held)
@@ -81,7 +93,7 @@ public class CollisionController : MonoBehaviour
         }
     }
 
-    public void DoDestructionSound(AudioClip[] soundSet)
+    public void PlayRandomSound(AudioClip[] soundSet)
     {
         var audio = GetComponentInChildren<AudioSource>();
         if (audio)
@@ -91,17 +103,18 @@ public class CollisionController : MonoBehaviour
             {
                 audio.clip = clip;
                 audio.Play();
-                audio.transform.SetParent(null, true);
             }
         }
     }
 
     private void OnCollisionEnter(Collision col)
     {
+        var audio = GetComponentInChildren<AudioSource>();
         if (col.gameObject.CompareTag("Meteor"))
         {
             DoDestructionFX();
-            DoDestructionSound(HitOtherMeteorSounds);
+            PlayRandomSound(HitOtherMeteorSounds);
+            audio.transform.SetParent(null, true);
             Destroy(gameObject);
         }
         else if (col.gameObject.CompareTag("Heal"))
@@ -127,7 +140,8 @@ public class CollisionController : MonoBehaviour
         else if (col.gameObject.CompareTag("Player"))
         {
             DoDestructionFX();
-            DoDestructionSound(HitSatelliteSounds);
+            PlayRandomSound(HitSatelliteSounds);
+            audio.transform.SetParent(null, true);
             Destroy(gameObject);
             // Game over
 

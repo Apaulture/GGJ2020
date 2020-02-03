@@ -61,7 +61,7 @@ public class Planet : MonoBehaviour
 			--Health;
 			EmitParticles(DamageParticleColor);
             var collisionController = other.gameObject.GetComponent<CollisionController>();
-            collisionController.DoDestructionSound(collisionController.HitPlanetSounds);
+            collisionController.PlayRandomSound(collisionController.HitPlanetSounds);
 		} else if (other.gameObject.CompareTag("Heal")) {
 			++Health;
 			EmitParticles(HealParticleColor);
