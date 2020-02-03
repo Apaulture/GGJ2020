@@ -64,10 +64,24 @@ public class CollisionController : MonoBehaviour
         }
     }
 
+    private void EmitDestructionParticles()
+    {
+        var particles = GetComponentInChildren<ParticleSystem>();
+        if (particles)
+        {
+            particles.transform.SetParent(null, true);
+            var emitParams = new ParticleSystem.EmitParams();
+            Color color = held ? healMeteor : damageMeteor;
+            emitParams.startColor = color;
+            particles.Emit(emitParams, 100);
+        }
+    }
+
     private void OnCollisionEnter(Collision col)
     {
         if (col.gameObject.CompareTag("Meteor"))
         {
+            EmitDestructionParticles();
             Destroy(gameObject);
         }
         else if (col.gameObject.CompareTag("Heal"))
@@ -78,6 +92,7 @@ public class CollisionController : MonoBehaviour
             }
             else*/
             {
+                EmitDestructionParticles();
                 Destroy(gameObject);
             }
         }
@@ -91,6 +106,8 @@ public class CollisionController : MonoBehaviour
         }
         else if (col.gameObject.CompareTag("Player"))
         {
+            EmitDestructionParticles();
+            Destroy(gameObject);
             // Game over
 
             // Play satellite destruction animation
