@@ -12,7 +12,6 @@ public class SatelliteHealth : MonoBehaviour
 
 	void OnCollisionEnter(Collision collision) {
 		if (collision.gameObject.CompareTag("Meteor")) {
-			Destroy(collision.gameObject);
             --Health;
             if (Health <= 0) {
 				Destroy(gameObject);
