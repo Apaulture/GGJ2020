@@ -68,6 +68,7 @@ public class CollisionController : MonoBehaviour
     {
         if (col.gameObject.CompareTag("Meteor"))
         {
+
             Destroy(gameObject);
         }
         else if (col.gameObject.CompareTag("Heal"))
