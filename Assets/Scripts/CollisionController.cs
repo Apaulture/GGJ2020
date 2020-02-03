@@ -20,6 +20,7 @@ public class CollisionController : MonoBehaviour
     public AudioClip[] HitPlanetSounds;
     public AudioClip LaunchSound;
     public AudioClip ChangeSound;
+    public AudioClip HealSound;
 
     void Start()
     {
@@ -146,6 +147,20 @@ public class CollisionController : MonoBehaviour
             // Game over
 
             // Play satellite destruction animation
+        }
+        else if (col.gameObject.GetComponent<Planet>())
+        {
+            DoDestructionFX();
+            if (held)
+            {
+                audio.PlayOneShot(HealSound);
+            }
+            else
+            {
+                PlayRandomSound(HitPlanetSounds);
+            }
+            audio.transform.SetParent(null, true);
+            Destroy(gameObject);
         }
     }
 }

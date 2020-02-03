@@ -4924,6 +4924,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 63d22a48f173c4a9aa274ceeba9fcaf4, type: 3}
   LaunchSound: {fileID: 8300000, guid: 8776cb6041d064b5584d48385ef4d623, type: 3}
   ChangeSound: {fileID: 8300000, guid: ffaf4416bc62a4cc39d70ce969cc7d96, type: 3}
+  HealSound: {fileID: 8300000, guid: e566fea4a50c9ee4cb1ba5df82c99a40, type: 3}
 --- !u!1001 &5949608291753803852
 PrefabInstance:
   m_ObjectHideFlags: 0

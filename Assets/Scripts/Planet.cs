@@ -60,8 +60,6 @@ public class Planet : MonoBehaviour
 		if (other.gameObject.CompareTag("Meteor")) {
 			--Health;
 			EmitParticles(DamageParticleColor);
-            var collisionController = other.gameObject.GetComponent<CollisionController>();
-            collisionController.PlayRandomSound(collisionController.HitPlanetSounds);
 		} else if (other.gameObject.CompareTag("Heal")) {
 			++Health;
 			EmitParticles(HealParticleColor);
@@ -88,6 +86,5 @@ public class Planet : MonoBehaviour
 			//Explode, game over
 		}
 		UpdateHealth();
-		Destroy(other.gameObject);
 	}
 }
