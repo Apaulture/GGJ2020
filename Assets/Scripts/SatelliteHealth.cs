@@ -4,12 +4,10 @@ using UnityEngine;
 
 public class SatelliteHealth : MonoBehaviour
 {
+	public static int Health = 3;
 	public int MaxHealth = 3;
 
-	public int Health = 3;
-
 	void Start() {
-		Health = MaxHealth;
 	}
 
 	void OnCollisionEnter(Collision collision) {
