@@ -15,12 +15,17 @@ public class Planet : MonoBehaviour
 	public GameObject cam1;
 	public GameObject cam2;
 	public GameObject planet2;
+    
 
 	void Start () {
 		UpdateHealth();
 	}
 
 	void Update() {
+        if (Input.GetAxis("Fire2") == 1)
+        {
+			Debug.Log("yo");
+        }
 	}
 
 	void UpdateHealth () {
