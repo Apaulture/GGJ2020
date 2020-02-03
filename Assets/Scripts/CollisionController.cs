@@ -15,6 +15,10 @@ public class CollisionController : MonoBehaviour
     public Color32 healMeteor;
     public float holdThreshold; // Time held before turning into a healing meteor
 
+    public AudioClip[] HitOtherMeteorSounds;
+    public AudioClip[] HitSatelliteSounds;
+    public AudioClip[] HitPlanetSounds;
+
     void Start()
     {
         m_Rigidbody = GetComponent<Rigidbody>();
@@ -64,7 +68,7 @@ public class CollisionController : MonoBehaviour
         }
     }
 
-    private void EmitDestructionParticles()
+    public void DoDestructionFX()
     {
         var particles = GetComponentInChildren<ParticleSystem>();
         if (particles)
@@ -77,11 +81,27 @@ public class CollisionController : MonoBehaviour
         }
     }
 
+    public void DoDestructionSound(AudioClip[] soundSet)
+    {
+        var audio = GetComponentInChildren<AudioSource>();
+        if (audio)
+        {
+            var clip = soundSet[Random.Range(0, soundSet.Length - 1)];
+            if (clip)
+            {
+                audio.clip = clip;
+                audio.Play();
+                audio.transform.SetParent(null, true);
+            }
+        }
+    }
+
     private void OnCollisionEnter(Collision col)
     {
         if (col.gameObject.CompareTag("Meteor"))
         {
-            EmitDestructionParticles();
+            DoDestructionFX();
+            DoDestructionSound(HitOtherMeteorSounds);
             Destroy(gameObject);
         }
         else if (col.gameObject.CompareTag("Heal"))
@@ -92,7 +112,7 @@ public class CollisionController : MonoBehaviour
             }
             else*/
             {
-                EmitDestructionParticles();
+                DoDestructionFX();
                 Destroy(gameObject);
             }
         }
@@ -106,7 +126,8 @@ public class CollisionController : MonoBehaviour
         }
         else if (col.gameObject.CompareTag("Player"))
         {
-            EmitDestructionParticles();
+            DoDestructionFX();
+            DoDestructionSound(HitSatelliteSounds);
             Destroy(gameObject);
             // Game over
 
