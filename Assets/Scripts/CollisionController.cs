@@ -18,7 +18,7 @@ public class CollisionController : MonoBehaviour
     void Start()
     {
         m_Rigidbody = GetComponent<Rigidbody>();
-        m_Renderer = GetComponent<Renderer>();
+        m_Renderer = GetComponentInChildren<Renderer>();
 
         if (gameObject.CompareTag("Meteor"))
         {
@@ -30,7 +30,7 @@ public class CollisionController : MonoBehaviour
 
     void Update()
     {
-        Vector3 rotation = new Vector3(15, 30, 40);
+        Vector3 rotation = new Vector3(0, 30, 0);
         transform.Rotate(rotation * Time.deltaTime);
 
         bool isGrabbed = transform.parent
