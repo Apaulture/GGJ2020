@@ -7,7 +7,6 @@ public class AspectRatio : MonoBehaviour
 	void Start() {
 		var camera = GetComponent<Camera>();
 		var rect = camera.pixelRect;
-		print(rect);
 		var letterboxWidth = (rect.width - rect.height)/2;
 		if (rect.width < rect.height) {
 			letterboxWidth = -letterboxWidth;
