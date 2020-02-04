@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class Planet : MonoBehaviour
@@ -16,8 +17,10 @@ public class Planet : MonoBehaviour
 	public GameObject cam1;
 	public GameObject cam2;
 	public GameObject planet2;
-	bool victory = false;
-	public GameObject victoryText;
+	bool gameEnded = false;
+	public GameObject gameEndedText;
+	public Sprite WinImage;
+	public Sprite LoseImage;
 
 	void Start () {
 		UpdateHealth();
@@ -25,7 +28,7 @@ public class Planet : MonoBehaviour
 	}
 
 	void Update() {
-		if (Input.GetAxis("Fire2") == 1 && victory)
+		if (Input.GetAxis("Fire2") == 1 && gameEnded)
 		{
 			SceneManager.LoadScene("Credits");
 		}
@@ -36,6 +39,8 @@ public class Planet : MonoBehaviour
 		collider.radius = CollideRadiusMin + (CollideRadiusMax-CollideRadiusMin)*Health/MaxHealth;
 
 		var i = Health - 1;
+		if (i < 0 || i >= DamageSprites.Length)
+			return;
 		Sprite model = DamageSprites[i];
 		if (model) {
 
@@ -73,12 +78,12 @@ public class Planet : MonoBehaviour
 			cam2.SetActive(true);
 			transform.parent.SetParent(planet2.transform);
 
-			victory = true;
-			Instantiate(victoryText, new Vector3(24.73f, 0, -30.25f), Quaternion.Euler(90, 0, 0), null);
+			gameEnded = true;
 			var music = GameObject.FindObjectOfType<MusicPlayer>();
 			if (music) {
 				music.Play(music.WinMusic);
 			}
+			SetResult(WinImage);
 		}
 		if (Health <= 0) {
 			Health = 0;
@@ -86,13 +91,30 @@ public class Planet : MonoBehaviour
 			if (particles) {
 				particles.transform.parent = null;
 			}
-			Destroy(gameObject);
+			foreach (var renderer in GetComponentsInChildren<SpriteRenderer>()) {
+				renderer.enabled = false;
+			}
 			//Explode, game over
+			gameEnded = true;
 			var music = GameObject.FindObjectOfType<MusicPlayer>();
 			if (music) {
 				music.Play(music.LoseMusic);
 			}
+			SetResult(LoseImage);
 		}
 		UpdateHealth();
+	}
+
+	void SetResult(Sprite sprite) {
+		var result = GameObject.Find("ResultImage");
+		if (result) {
+			var image = result.GetComponent<Image>();
+			if (image) {
+				image.sprite = sprite;
+			}
+		}
+		foreach (var image in GameObject.FindObjectsOfType<Image>()) {
+			image.enabled = true;
+		}
 	}
 }

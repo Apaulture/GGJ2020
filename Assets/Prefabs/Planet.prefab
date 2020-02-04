@@ -218,6 +218,10 @@ MonoBehaviour:
   cam1: {fileID: 0}
   cam2: {fileID: 0}
   planet2: {fileID: 0}
+  gameEndedText: {fileID: 4669215235788685338, guid: f43c5e857c4b44601b410aedaf02d607,
+    type: 3}
+  WinImage: {fileID: 21300000, guid: 65dc1970c3defb440b4c3b0d7c7a747f, type: 3}
+  LoseImage: {fileID: 21300000, guid: ee05d5d0ccd217843a4e8ee614d17af6, type: 3}
 --- !u!135 &3975736902460222133
 SphereCollider:
   m_ObjectHideFlags: 0
