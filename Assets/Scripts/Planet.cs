@@ -75,6 +75,10 @@ public class Planet : MonoBehaviour
 
 			victory = true;
 			Instantiate(victoryText, new Vector3(24.73f, 0, -30.25f), Quaternion.Euler(90, 0, 0), null);
+			var music = GameObject.FindObjectOfType<MusicPlayer>();
+			if (music) {
+				music.Play(music.WinMusic);
+			}
 		}
 		if (Health <= 0) {
 			Health = 0;
@@ -84,6 +88,10 @@ public class Planet : MonoBehaviour
 			}
 			Destroy(gameObject);
 			//Explode, game over
+			var music = GameObject.FindObjectOfType<MusicPlayer>();
+			if (music) {
+				music.Play(music.LoseMusic);
+			}
 		}
 		UpdateHealth();
 	}
