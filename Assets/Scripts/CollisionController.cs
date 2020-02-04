@@ -40,6 +40,7 @@ public class CollisionController : MonoBehaviour
         Vector3 rotation = new Vector3(0, 30, 0);
         transform.Rotate(rotation * Time.deltaTime);
 
+	var meteorController = GameObject.FindObjectOfType<MeteorController>();
         bool isGrabbed = transform.parent
                 && transform.parent.CompareTag("Arm");
         if (isGrabbed && Input.GetAxis("Fire1") == 1)
@@ -54,6 +55,9 @@ public class CollisionController : MonoBehaviour
             var audio = GetComponentInChildren<AudioSource>();
             audio.clip = LaunchSound;
             audio.Play();
+	    if (meteorController) {
+		    meteorController.StartMeteors();
+	    }
         }
 
         // Condition to turn meteor into healing object
@@ -68,6 +72,13 @@ public class CollisionController : MonoBehaviour
                     var audio = GetComponentInChildren<AudioSource>();
                     audio.clip = ChangeSound;
                     audio.Play();
+		    var tutorialText = GameObject.FindObjectOfType<TutorialText>();
+		    if (tutorialText) {
+			    if (meteorController && !meteorController.started)
+				    tutorialText.SetText("RIGHT TRACKPAD L/R: ROTATE SHIP\nRIGHT TRIGGER: THROW HEALING ROCK\nAT THE PLANET TO RESTORE");
+			    else
+				    tutorialText.SetText("");
+		    }
                 }
                 held = true;
 
@@ -78,19 +89,6 @@ public class CollisionController : MonoBehaviour
                     gameObject.tag = "Heal";
                 }
             }
-        }
-    }
-
-    public void DoDestructionFX()
-    {
-        var particles = GetComponentInChildren<ParticleSystem>();
-        if (particles)
-        {
-            particles.transform.SetParent(null, true);
-            var emitParams = new ParticleSystem.EmitParams();
-            Color color = held ? healMeteor : damageMeteor;
-            emitParams.startColor = color;
-            particles.Emit(emitParams, 100);
         }
     }
 
@@ -108,14 +106,39 @@ public class CollisionController : MonoBehaviour
         }
     }
 
+    private void DoDestroyEffects() {
+        var particles = GetComponentInChildren<ParticleSystem>();
+        if (particles)
+        {
+            particles.transform.SetParent(null, true);
+            var emitParams = new ParticleSystem.EmitParams();
+            Color color = held ? healMeteor : damageMeteor;
+            emitParams.startColor = color;
+            particles.Emit(emitParams, 100);
+        }
+        var meteorController = GameObject.FindObjectOfType<MeteorController>();
+        var tutorialText = GameObject.FindObjectOfType<TutorialText>();
+        var audio = GetComponentInChildren<AudioSource>();
+
+        if (audio)
+                audio.transform.SetParent(null, true);
+
+        if (meteorController) {
+                meteorController.StartMeteors();
+        }
+        if (tutorialText)
+                tutorialText.SetText("");
+    }
+
     private void OnCollisionEnter(Collision col)
     {
+        var meteorController = GameObject.FindObjectOfType<MeteorController>();
+        var tutorialText = GameObject.FindObjectOfType<TutorialText>();
         var audio = GetComponentInChildren<AudioSource>();
         if (col.gameObject.CompareTag("Meteor"))
         {
-            DoDestructionFX();
             PlayRandomSound(HitOtherMeteorSounds);
-            audio.transform.SetParent(null, true);
+            DoDestroyEffects();
             Destroy(gameObject);
         }
         else if (col.gameObject.CompareTag("Heal"))
@@ -126,7 +149,7 @@ public class CollisionController : MonoBehaviour
             }
             else*/
             {
-                DoDestructionFX();
+                DoDestroyEffects();
                 Destroy(gameObject);
             }
         }
@@ -136,21 +159,20 @@ public class CollisionController : MonoBehaviour
             m_Rigidbody.velocity = Vector3.zero;
             transform.parent = col.gameObject.transform;
 
+	    if (tutorialText && !touched) {
+                    if (meteorController && !meteorController.started)
+                            tutorialText.SetText("CONVERTING TO HEALING ROCK...");
+	    }
             touched = true;
         }
         else if (col.gameObject.CompareTag("Player"))
         {
-            DoDestructionFX();
             PlayRandomSound(HitSatelliteSounds);
-            audio.transform.SetParent(null, true);
+            DoDestroyEffects();
             Destroy(gameObject);
-            // Game over
-
-            // Play satellite destruction animation
         }
         else if (col.gameObject.GetComponent<Planet>())
         {
-            DoDestructionFX();
             if (held)
             {
                 audio.PlayOneShot(HealSound);
@@ -159,7 +181,7 @@ public class CollisionController : MonoBehaviour
             {
                 PlayRandomSound(HitPlanetSounds);
             }
-            audio.transform.SetParent(null, true);
+            DoDestroyEffects();
             Destroy(gameObject);
         }
     }
