@@ -409,7 +409,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 37a94d4e95cda4fcca80b66b47645a3f, type: 3}
   - {fileID: 21300000, guid: 85d73dea0d6be4172bfca1c1a0ca7ca3, type: 3}
   DamageParticleColor: {r: 0.5803922, g: 0.20784314, b: 0.5411765, a: 1}
-  HealParticleColor: {r: 0.49411765, g: 0.72156864, b: 0.62686807, a: 1}
+  HealParticleColor: {r: 0.4704966, g: 0.9150943, b: 0.73112285, a: 1}
   cam1: {fileID: 0}
   cam2: {fileID: 0}
   planet2: {fileID: 0}
