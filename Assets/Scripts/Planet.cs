@@ -91,8 +91,17 @@ public class Planet : MonoBehaviour
 			if (particles) {
 				particles.transform.parent = null;
 			}
-			foreach (var renderer in GetComponentsInChildren<SpriteRenderer>()) {
-				renderer.enabled = false;
+			var sprite = transform.Find("Sprite");
+			GetComponent<SphereCollider>().enabled = false;
+			if (sprite) {
+				foreach (var renderer in sprite.GetComponentsInChildren<SpriteRenderer>()) {
+					renderer.enabled = true;
+				}
+				foreach (var rigidbody in sprite.GetComponentsInChildren<Rigidbody>()) {
+					rigidbody.transform.SetParent(null, true);
+					rigidbody.velocity = (rigidbody.transform.position - transform.position)*4;
+				}
+				Destroy(sprite.gameObject);
 			}
 			//Explode, game over
 			gameEnded = true;
